@@ -1,0 +1,22 @@
+<hazelcast xmlns="http://www.hazelcast.com/schema/config">
+    <network>
+        <interfaces/>
+        <join>
+            <auto-detection/>
+            <multicast/>
+        </join>
+    </network>
+    <jet enabled="true"/>
+    <properties>
+        <property name="hazelcast.logging.type">slf4j</property>
+        <property name="hazelcast.heartbeat.failuredetector.type">deadline</property>
+        <property name="hazelcast.heartbeat.interval.seconds">5</property>
+        <property name="hazelcast.max.no.heartbeat.seconds">20</property>
+    </properties>
+    <split-brain-protection enabled="true" name="my-split-brain-protection">
+        <minimum-cluster-size>2</minimum-cluster-size>
+    </split-brain-protection>
+    <map name="default">
+        <split-brain-protection-ref>my-split-brain-protection</split-brain-protection-ref>
+    </map>
+</hazelcast>
